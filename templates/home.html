@@ -8,7 +8,7 @@
       <div class="slick_slider">
         {% for new in news %}
         <div class="single_iteam">
-          <a href="{% url 'news_detail' new.id %}"> <img src="{{ new.img.url }}" alt=""></a>
+            <a href="{% url 'news_detail' new.id %}"> <img src="{{ new.img.url }}" alt=""></a>
           <div class="slider_article">
             <h2><a class="slider_tittle" href="{% url 'news_detail' new.id %}">{{ new.title|truncatewords:6 }}</a></h2>
             <p>{{ new.body|truncatewords:22 }}</p>
@@ -62,10 +62,10 @@
             </div>
             <div class="single_post_content_right">
               <ul class="spost_nav">
-                {% for kamron in uzb_news %}
+                {% for uzb in uzb_news %}
                 <li>
-                  <div class="media wow fadeInDown"> <a href="{% url 'news_detail' kamron.id %}" class="media-left"> <img alt="" src="{{ kamron.img.url }}"> </a>
-                    <div class="media-body"> <a href="{% url 'news_detail' kamron.id %}" class="catg_title">{{ kamron.title|truncatewords:5 }}</a> </div>
+                  <div class="media wow fadeInDown"> <a href="{% url 'news_detail' uzb.id %}" class="media-left"> <img alt="" src="{{ uzb.img.url }}"> </a>
+                    <div class="media-body"> <a href="{% url 'news_detail' uzb.id %}" class="catg_title">{{ uzb.title|truncatewords:5 }}</a> </div>
                   </div>
                 </li>
                 {% endfor %}
@@ -97,37 +97,24 @@
             </div>
             <div class="technology">
               <div class="single_post_content">
-                <h2><span>Technology</span></h2>
-                <ul class="business_catgnav">
+                <h2><span>Photography</span></h2>
+                    <ul class="business_catgnav">
                   <li>
-                    <figure class="bsbig_fig wow fadeInDown"> <a href="pages/single_page.html" class="featured_img"> <img alt="" src="{% static 'images/featured_img3.jpg' %}"> <span class="overlay"></span> </a>
-                      <figcaption> <a href="pages/single_page.html">Proin rhoncus consequat nisl eu ornare mauris</a> </figcaption>
-                      <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
+                    <figure class="bsbig_fig"><a href="{% static 'images/featured_img1.jpg' %}" class="featured_img"><img alt="" src="images/photograph_img2.jpg"><span class="overlay"></span></a>
+                      <figcaption> <a href="{% static 'images/photograph_img2.jpg' %}">Proin rhoncus consequat nisl eu ornare mauris</a> </figcaption>
+                      <p>c tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a phare...</p>
                     </figure>
                   </li>
                 </ul>
                 <ul class="spost_nav">
+                {% for texno in texno_news %}
                   <li>
-                    <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="{% static 'images/post_img1.jpg' %}"> </a>
-                      <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+                    <div class="media wow fadeInDown"> <a href="{% url 'news_detail' texno.id %}" class="media-left"> <img alt="" src="{{ texno.img.url }}"> </a>
+                      <div class="media-body"> <a href="{% url 'news_detail' texno.id %}" class="catg_title">{{ texno.title}}</a> </div>
                     </div>
                   </li>
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="{% static 'images/post_img2.jpg' %}"> </a>
-                      <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="{% static 'images/post_img1.jpg' %}"> </a>
-                      <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="{% static 'images/post_img2.jpg' %}"> </a>
-                      <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                    </div>
-                  </li>
-                </ul>
+                {% endfor %}
+                    </ul>
               </div>
             </div>
           </div>
@@ -210,26 +197,18 @@
           <div class="single_sidebar">
             <h2><span>Sport Yangiliklari</span></h2>
             <ul class="spost_nav">
-              <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="{% static 'images/post_img1.jpg' %}"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
+            {% for new in latest_sport %}
+            <li>
+              <div class="media">
+                <a href="{% url 'news_detail' new.id %}" class="media-left">
+                  <img alt="" src="{{ new.img.url }}">
+                </a>
+                <div class="media-body">
+                  <a href="{% url 'news_detail' new.id %}" class="catg_title">{{ new.title|truncatewords:10 }}</a>
                 </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="{% static 'images/post_img2.jpg' %}"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="{% static 'images/post_img1.jpg' %}"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                </div>
-              </li>
-              <li>
-                <div class="media wow fadeInDown"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="{% static 'images/post_img2.jpg' %}"> </a>
-                  <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                </div>
-              </li>
+              </div>
+            </li>
+            {% endfor %} </ul>
             </ul>
           </div>
           <div class="single_sidebar">

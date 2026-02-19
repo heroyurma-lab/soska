@@ -4,9 +4,9 @@ from .models import News, Category
 
 def home_page_view(request):
     categories = Category.objects.all()
-    news = News.objects.filter(status=News.Status.Published).order_by('-published_at')
+    news = News.objects.all()
     latest_news = News.objects.filter(status=News.Status.Published).order_by('-published_at')[:5]
-    latest_sport = News.objects.filter(status=News.Status.Published).order_by('-published_at')[:5]
+    latest_sport = News.objects.filter(category__name="Sport",status=News.Status.Published).order_by('-published_at')[:5]
 
     uzb_news = News.objects.filter(category__name="O‘zbekiston", status=News.Status.Published).order_by(
         '-published_at')[1:5]
@@ -18,6 +18,10 @@ def home_page_view(request):
     last_jahon_new = News.objects.filter(category__name="Jahon", status=News.Status.Published).order_by(
         '-published_at').first()
 
+    last_texno_new = News.objects.filter(category__name="Texnologiya",status=News.Status.Published).order_by('-published_at').first()
+
+    texno_news = News.objects.filter(category__name="Texnologiya",status=News.Status.Published).order_by('-published_at')[1:5]
+
     context = {
         'latest_sport': latest_sport,
         'latest_news': latest_news,
@@ -26,7 +30,9 @@ def home_page_view(request):
         'last_uzb_new': last_uzb_new,
         'uzb_news': uzb_news,
         'categories': categories,
-        'news': news
+        'news': news,
+        'texno_news': texno_news,
+        'last_texno_new': last_texno_new,
     }
     return render(request, 'home.html', context)
 
@@ -37,8 +43,8 @@ def news_list(request):
 
 
 def news_detail(request, id):
-    news = get_object_or_404(News, id=id, status=News.Status.Published)
-    return render(request, 'news_detail.html', {'news': news})
+    new = get_object_or_404(News, id=id, status=News.Status.Published)
+    return render(request, 'detail.html', {'new': new})
 
 
 def contact_us(request):
